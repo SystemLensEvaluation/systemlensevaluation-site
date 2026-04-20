@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Friction Map — Sample Evaluation Report</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg:        #0c0d0f;
+    --surface:   #131518;
+    --surface2:  #181b1f;
+    --border:    #1e2126;
+    --border-hi: #2e333b;
+    --amber:     #f5a623;
+    --green:     #3ddc84;
+    --red:       #ff5f5f;
+    --yellow:    #f5d923;
+    --muted:     #5a6070;
+    --text:      #cdd3de;
+    --text-hi:   #eef1f7;
+    --mono: 'JetBrains Mono', monospace;
+    --display: 'Syne', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 13px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    background-size: 180px 180px;
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.3;
+  }
+
+  .page { max-width: 960px; margin: 0 auto; padding: 3rem 2rem 6rem; }
+
+  /* REPORT HEADER */
+  .report-header {
+    border: 1px solid var(--border-hi);
+    padding: 2.5rem;
+    margin-bottom: 2.5rem;
+    background: var(--surface);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .report-header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--amber), transparent);
+  }
+
+  .report-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-bottom: 1.8rem;
+  }
+
+  .report-brand {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 0.95rem;
+    color: var(--text-hi);
+    letter-spacing: -0.02em;
+  }
+  .report-brand .bracket { color: var(--amber); }
+
+  .report-badges { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+
+  .badge {
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+    border: 1px solid var(--border-hi);
+    color: var(--muted);
+  }
+  .badge.sample { border-color: rgba(245,166,35,0.4); color: var(--amber); }
+
+  .report-title {
+    font-family: var(--display);
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--text-hi);
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+  }
+
+  .report-subtitle { font-size: 0.82rem; color: var(--muted); margin-bottom: 1.8rem; }
+
+  .report-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 0;
+    border: 1px solid var(--border);
+    background: var(--border);
+  }
+
+  .detail-cell {
+    background: var(--bg);
+    padding: 0.8rem 1rem;
+  }
+
+  .detail-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.2rem;
+  }
+
+  .detail-val { font-size: 0.8rem; color: var(--text-hi); }
+
+  /* SECTION */
+  .section { margin-bottom: 2.5rem; }
+
+  .section-heading {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-heading h2 {
+    font-family: var(--display);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-hi);
+    letter-spacing: -0.01em;
+  }
+
+  .section-num {
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    color: var(--amber);
+    background: rgba(245,166,35,0.08);
+    padding: 0.15rem 0.5rem;
+    border: 1px solid rgba(245,166,35,0.2);
+  }
+
+  /* SCORE SUMMARY */
+  .score-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-bottom: 1.2rem;
+  }
+
+  .score-cell {
+    background: var(--surface);
+    padding: 1.2rem 1rem;
+    text-align: center;
+  }
+
+  .score-val {
+    font-family: var(--display);
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+  .score-val.critical { color: var(--red); }
+  .score-val.high { color: var(--amber); }
+  .score-val.medium { color: var(--yellow); }
+  .score-val.low { color: var(--green); }
+  .score-val.neutral { color: var(--text-hi); }
+
+  .score-label { font-size: 0.62rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; }
+
+  /* FLOW DIAGRAM */
+  .flow {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .flow-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .flow-node {
+    width: 110px;
+    padding: 0.6rem 0.5rem;
+    border: 1px solid var(--border-hi);
+    background: var(--surface);
+    text-align: center;
+    font-size: 0.65rem;
+    color: var(--text);
+    line-height: 1.4;
+    position: relative;
+    transition: border-color 0.2s;
+  }
+
+  .flow-node.has-friction { border-color: var(--amber); }
+  .flow-node.has-critical { border-color: var(--red); background: rgba(255,95,95,0.06); }
+  .flow-node.ok { border-color: rgba(61,220,132,0.4); }
+
+  .flow-node-label {
+    font-size: 0.58rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.25rem;
+  }
+
+  .flow-node-name { font-size: 0.68rem; color: var(--text-hi); font-weight: 500; }
+
+  .friction-count {
+    position: absolute;
+    top: -8px; right: -8px;
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: var(--amber);
+    color: var(--bg);
+    font-size: 0.6rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .friction-count.critical { background: var(--red); }
+
+  .flow-arrow {
+    width: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 1.2rem;
+    color: var(--border-hi);
+    font-size: 0.75rem;
+    flex-shrink: 0;
+  }
+
+  .drop-pct {
+    font-size: 0.58rem;
+    color: var(--red);
+    margin-top: 0.3rem;
+    text-align: center;
+  }
+
+  /* FRICTION TABLE */
+  .friction-table { width: 100%; border-collapse: collapse; }
+
+  .friction-table th {
+    text-align: left;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 0.6rem 0.8rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    white-space: nowrap;
+  }
+
+  .friction-table td {
+    padding: 0.85rem 0.8rem;
+    border: 1px solid var(--border);
+    font-size: 0.75rem;
+    vertical-align: top;
+    background: var(--bg);
+  }
+
+  .friction-table tr:hover td { background: var(--surface); }
+
+  .sev-pill {
+    display: inline-block;
+    font-size: 0.58rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.18rem 0.5rem;
+    border-radius: 0;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .sev-critical { background: rgba(255,95,95,0.15); color: var(--red); border: 1px solid rgba(255,95,95,0.3); }
+  .sev-high     { background: rgba(245,166,35,0.12); color: var(--amber); border: 1px solid rgba(245,166,35,0.3); }
+  .sev-medium   { background: rgba(245,217,35,0.1); color: var(--yellow); border: 1px solid rgba(245,217,35,0.25); }
+  .sev-low      { background: rgba(61,220,132,0.08); color: var(--green); border: 1px solid rgba(61,220,132,0.2); }
+
+  .freq-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .freq-track {
+    width: 60px;
+    height: 4px;
+    background: var(--border-hi);
+    position: relative;
+  }
+  .freq-fill { height: 100%; background: var(--amber); }
+  .freq-label { font-size: 0.68rem; color: var(--text-hi); white-space: nowrap; }
+
+  .location-tag {
+    font-size: 0.65rem;
+    color: var(--amber);
+    background: rgba(245,166,35,0.07);
+    padding: 0.1rem 0.4rem;
+    border: 1px solid rgba(245,166,35,0.15);
+    display: inline-block;
+  }
+
+  .quote {
+    font-size: 0.72rem;
+    color: var(--muted);
+    font-style: italic;
+    line-height: 1.6;
+  }
+  .quote::before { content: '"'; color: var(--amber); }
+  .quote::after { content: '"'; color: var(--amber); }
+
+  /* RECOMMENDATIONS */
+  .rec-list { display: flex; flex-direction: column; gap: 1rem; }
+
+  .rec {
+    display: flex;
+    gap: 1rem;
+    border: 1px solid var(--border-hi);
+    padding: 1.2rem 1.2rem;
+    background: var(--surface);
+    align-items: flex-start;
+  }
+
+  .rec-rank {
+    font-family: var(--display);
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--border-hi);
+    line-height: 1;
+    flex-shrink: 0;
+    width: 2.2rem;
+    text-align: center;
+    letter-spacing: -0.04em;
+    margin-top: -0.1rem;
+  }
+
+  .rec-body { flex: 1; }
+
+  .rec-title {
+    font-family: var(--display);
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--text-hi);
+    margin-bottom: 0.3rem;
+  }
+
+  .rec-desc { font-size: 0.76rem; color: var(--muted); line-height: 1.75; margin-bottom: 0.6rem; }
+
+  .rec-meta { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+
+  .rec-tag {
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.18rem 0.5rem;
+    border: 1px solid var(--border-hi);
+    color: var(--muted);
+  }
+
+  /* CALLOUT */
+  .callout {
+    border: 1px solid var(--border-hi);
+    border-left: 3px solid var(--amber);
+    padding: 1.2rem 1.5rem;
+    background: var(--surface);
+    font-size: 0.8rem;
+    color: var(--text);
+    line-height: 1.8;
+  }
+  .callout strong { color: var(--text-hi); }
+
+  /* LEGEND */
+  .legend {
+    display: flex;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+  }
+  .legend-item { display: flex; align-items: center; gap: 0.4rem; font-size: 0.65rem; color: var(--muted); }
+  .legend-dot { width: 8px; height: 8px; border-radius: 50%; }
+
+  /* FOOTER */
+  .report-footer {
+    border-top: 1px solid var(--border);
+    padding-top: 1.5rem;
+    margin-top: 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .report-footer p { font-size: 0.65rem; color: var(--muted); }
+  .confidential {
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border: 1px solid var(--border-hi);
+    padding: 0.2rem 0.6rem;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- REPORT HEADER -->
+  <div class="report-header">
+    <div class="report-meta">
+      <div class="report-brand"><span class="bracket">[</span>System Lens<span class="bracket">]</span> — Evaluation Report</div>
+      <div class="report-badges">
+        <span class="badge sample">Sample Document</span>
+        <span class="badge">Starter Engagement</span>
+        <span class="badge">Zero Integration</span>
+      </div>
+    </div>
+
+    <div class="report-title">Friction Map: Onboarding &amp; Trial Activation</div>
+    <div class="report-subtitle">Fictional product: Claritask — B2B project management SaaS &nbsp;·&nbsp; Evaluator panel: 6 users &nbsp;·&nbsp; Flow evaluated: Sign-up → First project created</div>
+
+    <div class="report-details">
+      <div class="detail-cell">
+        <div class="detail-label">Evaluation Date</div>
+        <div class="detail-val">April 2026</div>
+      </div>
+      <div class="detail-cell">
+        <div class="detail-label">Panel Size</div>
+        <div class="detail-val">6 evaluators</div>
+      </div>
+      <div class="detail-cell">
+        <div class="detail-label">Skill Range</div>
+        <div class="detail-val">Beginner → Advanced</div>
+      </div>
+      <div class="detail-cell">
+        <div class="detail-label">Integration</div>
+        <div class="detail-val">None</div>
+      </div>
+      <div class="detail-cell">
+        <div class="detail-label">Task Completion</div>
+        <div class="detail-val" style="color:var(--amber)">4 / 6 (67%)</div>
+      </div>
+      <div class="detail-cell">
+        <div class="detail-label">Friction Points Found</div>
+        <div class="detail-val" style="color:var(--red)">11</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 1. SEVERITY SUMMARY -->
+  <div class="section">
+    <div class="section-heading">
+      <span class="section-num">01</span>
+      <h2>Severity Summary</h2>
+    </div>
+    <div class="score-grid">
+      <div class="score-cell">
+        <div class="score-val critical">2</div>
+        <div class="score-label">Critical</div>
+      </div>
+      <div class="score-cell">
+        <div class="score-val high">4</div>
+        <div class="score-label">High</div>
+      </div>
+      <div class="score-cell">
+        <div class="score-val medium">3</div>
+        <div class="score-label">Medium</div>
+      </div>
+      <div class="score-cell">
+        <div class="score-val low">2</div>
+        <div class="score-label">Low</div>
+      </div>
+      <div class="score-cell">
+        <div class="score-val neutral" style="color:var(--amber)">67%</div>
+        <div class="score-label">Task Completion</div>
+      </div>
+      <div class="score-cell">
+        <div class="score-val neutral" style="color:var(--red)">2/6</div>
+        <div class="score-label">Abandoned Flow</div>
+      </div>
+    </div>
+    <div class="callout">
+      <strong>Overall assessment:</strong> The onboarding flow has two critical blockers that prevented 2 of 6 evaluators from completing the core task. Both issues appear in the first 3 minutes of use and are concentrated in the workspace setup step. The remaining 4 completions showed significant hesitation and required multiple retries. This flow is unlikely to convert users who are not already highly motivated.
+    </div>
+  </div>
+
+  <!-- 2. FLOW MAP -->
+  <div class="section">
+    <div class="section-heading">
+      <span class="section-num">02</span>
+      <h2>Flow Friction Map</h2>
+    </div>
+
+    <div class="legend">
+      <div class="legend-item"><div class="legend-dot" style="background:var(--red)"></div> Critical friction / abandonment</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--amber)"></div> High / medium friction</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div> Completed without issue</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--border-hi)"></div> Minor friction noted</div>
+    </div>
+
+    <div class="flow">
+      <div class="flow-step">
+        <div class="flow-node ok">
+          <div class="flow-node-label">Step 1</div>
+          <div class="flow-node-name">Landing Page / Sign-up CTA</div>
+        </div>
+      </div>
+      <div class="flow-arrow">→</div>
+
+      <div class="flow-step">
+        <div class="flow-node has-friction">
+          <div class="flow-node-label">Step 2</div>
+          <div class="flow-node-name">Account Creation Form</div>
+          <span class="friction-count">2</span>
+        </div>
+        <div class="drop-pct">1 retry avg.</div>
+      </div>
+      <div class="flow-arrow">→</div>
+
+      <div class="flow-step">
+        <div class="flow-node has-critical">
+          <div class="flow-node-label">Step 3</div>
+          <div class="flow-node-name">Email Verification</div>
+          <span class="friction-count critical">!</span>
+        </div>
+        <div class="drop-pct">1 abandoned here</div>
+      </div>
+      <div class="flow-arrow">→</div>
+
+      <div class="flow-step">
+        <div class="flow-node has-critical">
+          <div class="flow-node-label">Step 4</div>
+          <div class="flow-node-name">Workspace Setup</div>
+          <span class="friction-count critical">4</span>
+        </div>
+        <div class="drop-pct">1 abandoned here</div>
+      </div>
+      <div class="flow-arrow">→</div>
+
+      <div class="flow-step">
+        <div class="flow-node has-friction">
+          <div class="flow-node-label">Step 5</div>
+          <div class="flow-node-name">Invite Team Members</div>
+          <span class="friction-count">2</span>
+        </div>
+      </div>
+      <div class="flow-arrow">→</div>
+
+      <div class="flow-step">
+        <div class="flow-node has-friction">
+          <div class="flow-node-label">Step 6</div>
+          <div class="flow-node-name">Create First Project</div>
+          <span class="friction-count">2</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. FRICTION LOG -->
+  <div class="section">
+    <div class="section-heading">
+      <span class="section-num">03</span>
+      <h2>Friction Point Log</h2>
+    </div>
+
+    <table class="friction-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Location</th>
+          <th>Description</th>
+          <th>Severity</th>
+          <th>Frequency</th>
+          <th>Evaluator Quote</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="color:var(--muted)">F-01</td>
+          <td><span class="location-tag">Workspace Setup</span></td>
+          <td style="color:var(--text)">Required "workspace URL" field uses an unfamiliar slug format with no explanation or example. 4 of 6 evaluators paused here for 30+ seconds. 1 abandoned.</td>
+          <td><span class="sev-pill sev-critical">Critical</span></td>
+          <td>
+            <div class="freq-bar">
+              <div class="freq-track"><div class="freq-fill" style="width:100%"></div></div>
+              <span class="freq-label">6/6</span>
+            </div>
+          </td>
+          <td><span class="quote">I don't know what a workspace URL is supposed to be. Is this my company name? A website?</span></td>
+        </tr>
+        <tr>
+          <td style="color:var(--muted)">F-02</td>
+          <td><span class="location-tag">Email Verification</span></td>
+          <td style="color:var(--text)">Verification email takes 2–4 minutes to arrive with no indication of expected wait time on the confirmation screen. 1 evaluator assumed the process had failed and re-registered.</td>
+          <td><span class="sev-pill sev-critical">Critical</span></td>
+          <td>
+            <div class="freq-bar">
+              <div class="freq-track"><div class="freq-fill" style="width:67%"></div></div>
+              <span class="freq-label">4/6</span>
+            </div>
+          </td>
+          <td><span class="quote">Nothing is happening. Did it send? I'm going to try signing up again.</span></td>
+        </tr>
+        <tr>
+          <td style="color:var(--muted)">F-03</td>
+          <td><span class="location-tag">Workspace Setup</span></td>
+          <td style="color:var(--text)">"Plan type" selector appears mid-setup before any product value has been shown. Evaluators felt they were being asked to commit before understanding what they were buying.</td>
+          <td><span class="sev-pill sev-high">High</span></td>
+          <td>
+            <div class="freq-bar">
+              <div class="freq-track"><div class="freq-fill" style="width:83%"></div></div>
+              <span class="freq-label">5/6</span>
+            </div>
+          </td>
+          <td><span class="quote">Why do I have to pick a plan now? I haven't even seen the product yet.</span></td>
+        </tr>
+        <tr>
+          <td style="color:var(--muted)">F-04</td>
+          <td><span class="location-tag">Invite Team Members</span></td>
+          <td style="color:var(--text)">Skipping the invite step is possible but the "Skip for now" link is visually de-emphasised to near invisibility. 3 evaluators spent time trying to fabricate email addresses rather than skipping.</td>
+          <td><span class="sev-pill sev-high">High</span></td>
+          <td>
+            <div class="freq-bar">
+              <div class="freq-track"><div class="freq-fill" style="width:50%"></div></div>
+              <span class="freq-label">3/6</span>
+            </div>
+          </td>
+          <td><span class="quote">I'm not going to invite anyone right now but I can't figure out how to move on without doing it.</span></td>
+        </tr>
+        <tr>
+          <td style="color:var(--muted)">F-05</td>
+          <td><span class="location-tag">Account Creation</span></td>
+          <td style="color:var(--text)">Password requirements not shown until submission failure. Evaluators had to guess the rules after an error appeared.</td>
+          <td><span class="sev-pill sev-high">High</span></td>
+          <td>
+            <div class="freq-bar">
+              <div class="freq-track"><div class="freq-fill" style="width:67%"></div></div>
+              <span class="freq-label">4/6</span>
+            </div>
+          </td>
+          <td><span class="quote">It just says "invalid password." I have no idea what it wants from me.</span></td>
+        </tr>
+        <tr>
+          <td style="color:var(--muted)">F-06</td>
+          <td><span class="location-tag">Workspace Setup</span></td>
+          <td style="color:var(--text)">Progress indicator shows 4 steps but setup actually takes 7 screens. Evaluators felt misled once the step count was exceeded.</td>
+          <td><span class="sev-pill sev-high">High</span></td>
+          <td>
+            <div class="freq-bar">
+              <div class="freq-track"><div class="freq-fill" style="width:67%"></div></div>
+              <span class="freq-label">4/6</span>
+            </div>
+          </td>
+          <td><span class="quote">It said step 4 of 4 like two screens ago. How long is this?</span></td>
+        </tr>
+        <tr>
+          <td style="color:var(--muted)">F-07</td>
+          <td><span class="location-tag">Create First Project</span></td>
+          <td style="color:var(--text)">"Project type" dropdown has 14 options with no descriptions. Non-technical evaluators could not determine the difference between "Scrum," "Kanban," and "Agile" options.</td>
+          <td><span class="sev-pill sev-medium">Medium</span></td>
+          <td>
+            <div class="freq-bar">
+              <div class="freq-track"><div class="freq-fill" style="width:50%"></div></div>
+              <span class="freq-label">3/6</span>
+            </div>
+          </td>
+          <td><span class="quote">What's the difference between these? I'll just pick the first one and hope for the best.</span></td>
+        </tr>
+        <tr>
+          <td style="color:var(--muted)">F-08</td>
+          <td><span class="location-tag">Account Creation</span></td>
+          <td style="color:var(--text)">No social sign-in or SSO option on the sign-up form. Two evaluators specifically looked for Google sign-in before filling in the form manually.</td>
+          <td><span class="sev-pill sev-medium">Medium</span></td>
+          <td>
+            <div class="freq-bar">
+              <div class="freq-track"><div class="freq-fill" style="width:33%"></div></div>
+              <span class="freq-label">2/6</span>
+            </div>
+          </td>
+          <td><span class="quote">I always use Google login for things like this. Having to create yet another password is annoying.</span></td>
+        </tr>
+        <tr>
+          <td style="color:var(--muted)">F-09</td>
+          <td><span class="location-tag">Workspace Setup</span></td>
+          <td style="color:var(--text)">Timezone selector defaults to UTC with no auto-detection. All evaluators had to manually search for their timezone.</td>
+          <td><span class="sev-pill sev-medium">Medium</span></td>
+          <td>
+            <div class="freq-bar">
+              <div class="freq-track"><div class="freq-fill" style="width:100%"></div></div>
+              <span class="freq-label">6/6</span>
+            </div>
+          </td>
+          <td><span class="quote">Why doesn't it just know my timezone? Every other app does this automatically.</span></td>
+        </tr>
+        <tr>
+          <td style="color:var(--muted)">F-10</td>
+          <td><span class="location-tag">Create First Project</span></td>
+          <td style="color:var(--text)">"Start date" field requires a specific date format (YYYY-MM-DD) not shown as placeholder text. Most evaluators entered MM/DD/YYYY and received a silent validation failure.</td>
+          <td><span class="sev-pill sev-low">Low</span></td>
+          <td>
+            <div class="freq-bar">
+              <div class="freq-track"><div class="freq-fill" style="width:67%"></div></div>
+              <span class="freq-label">4/6</span>
+            </div>
+          </td>
+          <td><span class="quote">Why didn't it tell me what format it wanted? I just had to figure it out by trial and error.</span></td>
+        </tr>
+        <tr>
+          <td style="color:var(--muted)">F-11</td>
+          <td><span class="location-tag">Invite Team Members</span></td>
+          <td style="color:var(--text)">Success confirmation after project creation is a small toast notification that disappears in 2 seconds. Several evaluators weren't sure if their project had actually been saved.</td>
+          <td><span class="sev-pill sev-low">Low</span></td>
+          <td>
+            <div class="freq-bar">
+              <div class="freq-track"><div class="freq-fill" style="width:50%"></div></div>
+              <span class="freq-label">3/6</span>
+            </div>
+          </td>
+          <td><span class="quote">Did that save? I'm not sure if it worked. I don't see it anywhere.</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 4. PRIORITISED RECOMMENDATIONS -->
+  <div class="section">
+    <div class="section-heading">
+      <span class="section-num">04</span>
+      <h2>Prioritised Recommendations</h2>
+    </div>
+
+    <div class="rec-list">
+      <div class="rec">
+        <div class="rec-rank">1</div>
+        <div class="rec-body">
+          <div class="rec-title">Fix the workspace URL field immediately — add inline example and plain language explanation</div>
+          <p class="rec-desc">This single field caused the most confusion of any element in the flow and directly caused one abandonment. Add a placeholder like "e.g. acme-corp" and a one-line explanation beneath the field: "This is your team's unique address in Claritask. You can change it later." This is a 30-minute fix with outsized impact.</p>
+          <div class="rec-meta">
+            <span class="rec-tag">Affects: F-01</span>
+            <span class="rec-tag">Effort: Low</span>
+            <span class="rec-tag">Impact: Critical</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="rec">
+        <div class="rec-rank">2</div>
+        <div class="rec-body">
+          <div class="rec-title">Add wait-time messaging and resend option to the email verification screen</div>
+          <p class="rec-desc">The verification screen should tell users to expect a 2–5 minute delay and display a countdown or progress indicator. A visible "Resend email" button prevents users from assuming failure and re-registering, which creates duplicate accounts and drops the user from the flow.</p>
+          <div class="rec-meta">
+            <span class="rec-tag">Affects: F-02</span>
+            <span class="rec-tag">Effort: Low</span>
+            <span class="rec-tag">Impact: Critical</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="rec">
+        <div class="rec-rank">3</div>
+        <div class="rec-body">
+          <div class="rec-title">Move plan selection to after first value moment — not during setup</div>
+          <p class="rec-desc">Asking users to choose a plan before they have experienced the product creates friction and distrust. Move the plan selection prompt to after the first project is successfully created, or offer a default "free trial" that bypasses the decision entirely during onboarding. This is a structural change but directly addresses the most-cited source of negative sentiment.</p>
+          <div class="rec-meta">
+            <span class="rec-tag">Affects: F-03</span>
+            <span class="rec-tag">Effort: Medium</span>
+            <span class="rec-tag">Impact: High</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="rec">
+        <div class="rec-rank">4</div>
+        <div class="rec-body">
+          <div class="rec-title">Make "Skip for now" a clearly styled button, not a faint link</div>
+          <p class="rec-desc">The invite step should be visually optional from the start. Elevate the skip action to a secondary button with clear label. Users who are evaluating the product solo shouldn't feel forced to fabricate team data to proceed.</p>
+          <div class="rec-meta">
+            <span class="rec-tag">Affects: F-04</span>
+            <span class="rec-tag">Effort: Low</span>
+            <span class="rec-tag">Impact: High</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="rec">
+        <div class="rec-rank">5</div>
+        <div class="rec-body">
+          <div class="rec-title">Show password requirements inline before submission; auto-detect timezone</div>
+          <p class="rec-desc">Two quick wins that reduce unnecessary friction. Display password rules as inline helper text beneath the password field. Auto-detect timezone using the browser API and pre-populate the field — let users override if needed. Both changes are low effort and address issues that affected the majority of the panel.</p>
+          <div class="rec-meta">
+            <span class="rec-tag">Affects: F-05, F-09</span>
+            <span class="rec-tag">Effort: Low</span>
+            <span class="rec-tag">Impact: Medium</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="report-footer">
+    <div>
+      <p style="margin-bottom:0.3rem;"><span class="report-brand" style="font-size:0.8rem;"><span class="bracket">[</span>System Lens<span class="bracket">]</span></span></p>
+      <p>This is a sample document. All product names and findings are fictional and for illustrative purposes only.</p>
+    </div>
+    <span class="confidential">Confidential — Client Use Only</span>
+  </div>
+
+</div>
+</body>
+</html>
