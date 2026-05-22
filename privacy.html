@@ -1,124 +1,475 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Privacy Policy — SystemLens Evaluation</title>
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 40px 24px;
-      color: #222;
-      line-height: 1.7;
-    }
-    h1 { font-size: 28px; margin-bottom: 4px; }
-    h2 { font-size: 18px; margin-top: 40px; margin-bottom: 8px; border-bottom: 1px solid #eee; padding-bottom: 6px; }
-    p { margin: 0 0 16px 0; }
-    table { width: 100%; border-collapse: collapse; margin: 16px 0; }
-    th, td { text-align: left; padding: 10px 12px; border: 1px solid #ddd; font-size: 14px; }
-    th { background: #f5f5f5; }
-    a { color: #2563eb; }
-    .meta { color: #888; font-size: 14px; margin-bottom: 40px; }
-    .back { display: inline-block; margin-bottom: 32px; color: #2563eb; text-decoration: none; font-size: 14px; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Notice — System Lens Evaluation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0e0e12;
+    --paper: #f6f4ef;
+    --rule: #c8c2b2;
+    --accent: #1a3a5c;
+    --accent-light: #e8edf3;
+    --muted: #6b6560;
+    --highlight: #2d6a4f;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.75;
+  }
+
+  header {
+    background: var(--accent);
+    color: #fff;
+    padding: 3rem 2rem 2.5rem;
+  }
+  .header-inner { max-width: 780px; margin: 0 auto; }
+  .org-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.04em;
+    opacity: 0.75;
+    margin-bottom: 0.75rem;
+  }
+  header h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.15;
+    font-weight: 400;
+    margin-bottom: 1.25rem;
+  }
+  .meta-row {
+    display: flex; gap: 2rem; flex-wrap: wrap;
+    font-size: 0.85rem; opacity: 0.8;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    padding-top: 1rem; margin-top: 0.5rem;
+  }
+  .meta-row span { display: flex; align-items: center; gap: 0.4em; }
+
+  .layout { max-width: 780px; margin: 0 auto; padding: 0 2rem 5rem; }
+
+  .toc {
+    background: var(--accent-light);
+    border-left: 3px solid var(--accent);
+    padding: 1.5rem 2rem;
+    margin: 2.5rem 0 3rem;
+    border-radius: 0 4px 4px 0;
+  }
+  .toc h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1rem; color: var(--accent);
+    letter-spacing: 0.08em; text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+  .toc ol { list-style: none; counter-reset: toc; columns: 2; column-gap: 2rem; }
+  @media (max-width: 560px) { .toc ol { columns: 1; } }
+  .toc li { counter-increment: toc; font-size: 0.9rem; margin-bottom: 0.3rem; }
+  .toc li::before { content: counter(toc) ". "; color: var(--accent); font-weight: 500; }
+  .toc a { color: var(--accent); text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+
+  section { margin-bottom: 3rem; scroll-margin-top: 1rem; }
+  section h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.5rem; color: var(--accent);
+    margin-bottom: 1rem; padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  section h3 { font-size: 1rem; font-weight: 500; margin: 1.25rem 0 0.5rem; color: var(--ink); }
+  p { margin-bottom: 0.85rem; color: #2a2724; }
+  ul, ol { padding-left: 1.5rem; margin-bottom: 0.85rem; }
+  li { margin-bottom: 0.35rem; }
+
+  .info-box {
+    background: #fff; border: 1px solid var(--rule);
+    border-radius: 6px; padding: 1.25rem 1.5rem;
+    margin: 1rem 0 1.5rem; font-size: 0.93rem;
+  }
+  .info-box.highlight { border-left: 4px solid var(--highlight); background: #f0f7f4; }
+  .info-box strong { display: block; margin-bottom: 0.35rem; }
+
+  .data-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; margin: 1rem 0 1.5rem; }
+  .data-table th { background: var(--accent); color: #fff; text-align: left; padding: 0.65rem 1rem; font-weight: 500; }
+  .data-table td { padding: 0.6rem 1rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  .data-table tr:nth-child(even) td { background: #f9f8f5; }
+
+  .rights-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 1rem; margin: 1rem 0 1.5rem; }
+  .right-card { background: #fff; border: 1px solid var(--rule); border-radius: 6px; padding: 1rem 1.1rem; }
+  .right-card .right-name { font-weight: 500; font-size: 0.88rem; color: var(--accent); margin-bottom: 0.3rem; }
+  .right-card p { font-size: 0.83rem; margin: 0; color: var(--muted); }
+
+  .contact-box { background: var(--accent); color: #fff; border-radius: 6px; padding: 1.5rem 2rem; margin: 1rem 0 1.5rem; }
+  .contact-box h3 { font-family: 'DM Serif Display', serif; font-size: 1.15rem; margin-bottom: 0.75rem; }
+  .contact-box p { color: rgba(255,255,255,0.88); margin-bottom: 0.4rem; }
+  .contact-box a { color: #a8d8f0; }
+
+  footer {
+    background: var(--accent); color: rgba(255,255,255,0.7);
+    text-align: center; padding: 2rem;
+    font-size: 0.85rem; line-height: 1.8;
+  }
+  footer a { color: rgba(255,255,255,0.85); }
+</style>
 </head>
 <body>
 
-  <a href="/" class="back">← systemlensevaluation.com</a>
+<header>
+  <div class="header-inner">
+    <p class="org-name">システムレンズ評価 · System Lens Evaluation · systemlensevaluation.com</p>
+    <h1>Privacy Notice</h1>
+    <div class="meta-row">
+      <span>📅 Last reviewed: May 2026</span>
+      <span>🇯🇵 Operated in Japan</span>
+      <span>🇬🇧 ICO Reg. No. ZC149156</span>
+    </div>
+  </div>
+</header>
 
-  <h1>Privacy Policy</h1>
-  <p class="meta">
-    SystemLens Evaluation — Tester Platform<br>
-    Effective Date: April 26, 2026<br>
-    Last Updated: April 26, 2026
-  </p>
+<div class="layout">
 
-  <h2>1. Who We Are</h2>
-  <p>SystemLens Evaluation operates the tester platform at systemlenstesters.netlify.app. We recruit and manage independent testers who evaluate mobile applications on behalf of our clients.</p>
-  <p><strong>Contact for privacy matters:</strong><br>
-  <a href="mailto:privacy@systemlensevaluation.com">privacy@systemlensevaluation.com</a></p>
+  <div class="toc">
+    <h2>Contents</h2>
+    <ol>
+      <li><a href="#who">Who we are</a></li>
+      <li><a href="#what">What data we collect</a></li>
+      <li><a href="#how">How we use your data</a></li>
+      <li><a href="#basis">Legal basis for processing</a></li>
+      <li><a href="#sharing">Who we share data with</a></li>
+      <li><a href="#stripe">Payments &amp; Stripe</a></li>
+      <li><a href="#international">International transfers</a></li>
+      <li><a href="#retention">How long we keep data</a></li>
+      <li><a href="#your-rights">Your rights</a></li>
+      <li><a href="#security">Security</a></li>
+      <li><a href="#cookies">Cookies &amp; analytics</a></li>
+      <li><a href="#changes">Changes to this notice</a></li>
+      <li><a href="#contact">How to contact us</a></li>
+    </ol>
+  </div>
 
-  <h2>2. What Data We Collect</h2>
-  <p>When you create a tester account, we collect:</p>
-  <p><strong>Identity and contact information</strong><br>
-  Full name, email address, phone number</p>
-  <p><strong>Demographic information</strong><br>
-  Date of birth, gender, race/ethnicity, education level, vocation, primary language, geographic location (country and region/ZIP)</p>
-  <p><strong>Device information</strong><br>
-  Phone make, model, operating system and version, screen size and resolution</p>
-  <p><strong>Technical and behavioral information</strong><br>
-  Tech comfort level, smartphone usage frequency, accessibility features you use daily, any self-described qualities relevant to diverse testing</p>
-  <p><strong>Payment information</strong><br>
-  Wise account email or phone number for payment processing</p>
-  <p><strong>Test-related data</strong><br>
-  Your responses to test assignments, screen recordings you choose to share via third-party links, screenshots you upload, and any written feedback</p>
-  <p><strong>NDA records</strong><br>
-  A timestamped record of your agreement to any Non-Disclosure Agreement associated with a specific test assignment</p>
+  <!-- 1 -->
+  <section id="who">
+    <h2>1. Who we are</h2>
+    <p>System Lens Evaluation (システムレンズ評価) is a sole proprietorship registered in Japan, operated by Kirsi Erin Page. We provide independent software evaluation and user testing services through the platform at <strong>systemlensevaluation.com</strong>.</p>
+    <p>For the purposes of UK GDPR and data protection law applicable to UK and European data subjects, System Lens Evaluation is also affiliated with <strong>Hidden Insight Labs Ltd</strong> (UK Company No. 16941841), which holds ICO registration number <strong>ZC149156</strong>.</p>
+    <div class="info-box highlight">
+      <strong>Two types of users</strong>
+      This privacy notice covers two distinct groups: <strong>clients</strong> (companies and individuals who commission software evaluations) and <strong>testers</strong> (individuals who participate in evaluation panels). Some sections are relevant to both; where obligations differ, we note this clearly.
+    </div>
+  </section>
 
-  <h2>3. Why We Collect This Data</h2>
-  <p>We collect and process your data for the following purposes:</p>
-  <p>— To match you with test assignments appropriate to your profile and device<br>
-  — To receive, store, and review your test submissions<br>
-  — To process payments for completed assignments via Wise<br>
-  — To send you assignment invitations and platform announcements based on your email preferences<br>
-  — To maintain NDA compliance records on behalf of our clients<br>
-  — To improve our tester matching and reporting processes</p>
-  <p><strong>Legal basis (for EEA/UK users):</strong> We process your data on the basis of your explicit consent, given when you agree to our privacy policy at signup, and on the basis of legitimate interests in operating our testing business.</p>
+  <!-- 2 -->
+  <section id="what">
+    <h2>2. What data we collect</h2>
 
-  <h2>4. Sensitive Data</h2>
-  <p>Some of the information we collect — including race/ethnicity, date of birth, and accessibility information — is considered sensitive personal data under GDPR and similar laws. We collect this data solely to enable demographic diversity in our tester panels. You are never required to provide this information, and you may leave any sensitive fields blank without affecting your ability to participate.</p>
+    <h3>From clients</h3>
+    <ul>
+      <li>Name, company name, work email address, and job title</li>
+      <li>Information about your software product and evaluation requirements (provided via the contact form or during engagement setup)</li>
+      <li>Billing information — collected and processed by Stripe; we do not receive or store your full card details (see Section 6)</li>
+      <li>Communications with us (email, platform messages)</li>
+      <li>Signed agreements and NDAs</li>
+    </ul>
 
-  <h2>5. Where Your Data Is Stored</h2>
-  <p>Your data is stored in <strong>Supabase</strong>, with servers located in <strong>Mumbai, India</strong>. Screen recording files are stored on third-party services you choose (such as Dropbox or Google Drive) and we only store a link you provide. Uploaded screenshots are stored in Supabase Storage, also in Mumbai.</p>
-  <p>We use the following third-party services:</p>
-  <table>
-    <tr><th>Service</th><th>Purpose</th><th>Location</th></tr>
-    <tr><td>Supabase</td><td>Database, authentication, file storage</td><td>Mumbai, India</td></tr>
-    <tr><td>Netlify</td><td>Platform hosting and serverless functions</td><td>Global CDN</td></tr>
-    <tr><td>Resend</td><td>Transactional email delivery</td><td>United States</td></tr>
-    <tr><td>Wise</td><td>Payment processing</td><td>United Kingdom</td></tr>
-  </table>
-  <p>If you are located in the European Economic Area, United Kingdom, or other regions with data transfer restrictions, please note that your data may be processed in countries that do not have an equivalent level of data protection. By using our platform, you consent to this transfer.</p>
+    <h3>From testers</h3>
+    <ul>
+      <li>Name, email address, and country of residence</li>
+      <li>Device information (device make, model, operating system, and OS version)</li>
+      <li>Skills, experience, and accessibility requirements (provided in your tester profile)</li>
+      <li>Test submissions, screenshots, and written feedback produced during evaluations</li>
+      <li>Payment details for evaluation compensation — collected via Wise; we store only the email address or phone number associated with your Wise account</li>
+      <li>NDA agreement records (timestamp, IP address, agreement version)</li>
+      <li>Communications with us</li>
+    </ul>
 
-  <h2>6. How Long We Keep Your Data</h2>
-  <p>We retain your profile and test data for <strong>12 months</strong> after your last activity on the platform. After this period, your data will be deleted unless you have an outstanding payment, an active NDA obligation, or have requested an extension.</p>
-  <p>NDA signature records may be retained for longer periods if required by our contractual obligations to clients. You may request earlier deletion at any time by contacting us.</p>
+    <h3>From website visitors</h3>
+    <ul>
+      <li>Aggregated analytics data via Google Analytics 4 (anonymised; see Section 11)</li>
+      <li>Information submitted via the contact form (name, email, company, and message)</li>
+    </ul>
+  </section>
 
-  <h2>7. Your Rights</h2>
-  <p>Depending on your location, you may have the following rights:</p>
-  <p>— <strong>Access</strong> — request a copy of the personal data we hold about you<br>
-  — <strong>Correction</strong> — update inaccurate or incomplete data (you can do this directly in your profile)<br>
-  — <strong>Deletion</strong> — request that we delete your account and associated data<br>
-  — <strong>Portability</strong> — receive your data in a structured, machine-readable format<br>
-  — <strong>Withdrawal of consent</strong> — withdraw your consent at any time<br>
-  — <strong>Objection</strong> — object to processing based on legitimate interests</p>
-  <p>To exercise any of these rights, contact us at <a href="mailto:privacy@systemlensevaluation.com">privacy@systemlensevaluation.com</a>. We will respond within 30 days.</p>
-  <p><strong>California residents (CCPA):</strong> We do not sell your personal information. You have the right to know what data we collect and to request deletion.</p>
-  <p><strong>Japanese residents (APPI):</strong> We handle your personal information in accordance with Japan's Act on the Protection of Personal Information. You may request disclosure, correction, or cessation of use of your data by contacting us at the address above.</p>
+  <!-- 3 -->
+  <section id="how">
+    <h2>3. How we use your data</h2>
 
-  <h2>8. Data Security</h2>
-  <p>We implement the following security measures:</p>
-  <p>— Row-level security on all database tables, meaning each tester can only access their own data<br>
-  — Encrypted connections (HTTPS) for all data transmission<br>
-  — Authentication managed by Supabase with industry-standard practices<br>
-  — Sensitive fields such as payment information are stored only in our secured database and never shared with clients</p>
+    <h3>Clients</h3>
+    <ul>
+      <li>To communicate with you about your enquiry and scoping your evaluation</li>
+      <li>To set up, manage, and deliver your engagement</li>
+      <li>To process payments and issue invoices via Stripe</li>
+      <li>To fulfil our contractual and legal obligations</li>
+      <li>To send you evaluation reports and deliverables</li>
+    </ul>
 
-  <h2>9. What We Share With Clients</h2>
-  <p>Our clients receive <strong>aggregated and anonymized reporting</strong> based on your test submissions. We do not share your name, contact information, or any individually identifying information with clients. Demographic information is presented in aggregate percentage form only.</p>
-  <p>NDA signature records confirming that a tester agreed to a specific NDA may be disclosed to the relevant client if legally required.</p>
+    <h3>Testers</h3>
+    <ul>
+      <li>To operate your tester account and match you to appropriate assignments</li>
+      <li>To deliver evaluation tasks and collect your submissions</li>
+      <li>To process compensation payments via Wise</li>
+      <li>To maintain records of your NDA agreements</li>
+      <li>To notify you of new assignments (if you have opted in)</li>
+      <li>To assess writing ability and suitability for evaluation tasks (based on profile information you provide)</li>
+    </ul>
+  </section>
 
-  <h2>10. Children</h2>
-  <p>Our platform is not intended for anyone under the age of 18. We do not knowingly collect data from minors. If you believe a minor has created an account, please contact us at <a href="mailto:privacy@systemlensevaluation.com">privacy@systemlensevaluation.com</a>.</p>
+  <!-- 4 -->
+  <section id="basis">
+    <h2>4. Legal basis for processing</h2>
+    <p>We process personal data only where we have a lawful basis to do so under UK GDPR (for UK/European data subjects) and Japan's Act on the Protection of Personal Information (APPI) (for Japanese data subjects).</p>
+    <table class="data-table">
+      <thead>
+        <tr><th>Processing activity</th><th>Legal basis</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Delivering evaluation services to clients</td>
+          <td><strong>Contract</strong> — Art. 6(1)(b): necessary to perform our contract with you</td>
+        </tr>
+        <tr>
+          <td>Processing tester participation and assignments</td>
+          <td><strong>Contract</strong> — Art. 6(1)(b): necessary to perform our agreement with you as a tester</td>
+        </tr>
+        <tr>
+          <td>Processing payments (Stripe / Wise)</td>
+          <td><strong>Contract</strong> — Art. 6(1)(b): necessary to fulfil payment obligations</td>
+        </tr>
+        <tr>
+          <td>Maintaining NDA and agreement records</td>
+          <td><strong>Legal obligation / Legitimate interests</strong> — Art. 6(1)(c)/(f): compliance and dispute resolution</td>
+        </tr>
+        <tr>
+          <td>Responding to enquiries from prospective clients</td>
+          <td><strong>Legitimate interests</strong> — Art. 6(1)(f): our interest in managing our business pipeline</td>
+        </tr>
+        <tr>
+          <td>Website analytics (GA4)</td>
+          <td><strong>Legitimate interests</strong> — Art. 6(1)(f): understanding site performance with anonymised data</td>
+        </tr>
+        <tr>
+          <td>Email notifications about new assignments (testers)</td>
+          <td><strong>Consent</strong> — Art. 6(1)(a): you have opted in to notifications</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
 
-  <h2>11. Changes to This Policy</h2>
-  <p>We may update this policy from time to time. We will notify registered testers of significant changes by email. Continued use of the platform after changes are posted constitutes acceptance of the updated policy.</p>
+  <!-- 5 -->
+  <section id="sharing">
+    <h2>5. Who we share your data with</h2>
+    <p>We do not sell your personal data. We share it only where necessary to deliver our services.</p>
 
-  <h2>12. Contact</h2>
-  <p><strong>Email:</strong> <a href="mailto:privacy@systemlensevaluation.com">privacy@systemlensevaluation.com</a><br>
-  <strong>Platform:</strong> systemlenstesters.netlify.app<br>
-  <strong>Operated by:</strong> SystemLens Evaluation</p>
+    <h3>Service providers acting as processors</h3>
+    <ul>
+      <li><strong>Payments</strong> — Stripe, Inc. (US). See Section 6 for full details.</li>
+      <li><strong>Tester payments</strong> — Wise Payments Limited (UK/EU). We share tester Wise account identifiers to process evaluation compensation. Wise acts as an independent financial institution under its own regulatory obligations.</li>
+      <li><strong>Platform hosting</strong> — Netlify, Inc. (US; transfers covered by Standard Contractual Clauses). The System Lens Evaluation platform is hosted on Netlify.</li>
+      <li><strong>Database</strong> — Supabase, Inc. (US; transfers covered by Standard Contractual Clauses). Tester profiles, assignments, and submission data are stored in Supabase.</li>
+      <li><strong>Transactional email</strong> — Resend, Inc. (US; transfers covered by Standard Contractual Clauses). Used to send assignment notifications and platform communications.</li>
+      <li><strong>Email</strong> — Proton Mail AG (Switzerland; end-to-end encrypted). Used for client and internal communications.</li>
+      <li><strong>File storage</strong> — Dropbox, Inc. and Google LLC (US; transfers covered by Standard Contractual Clauses / IDTA).</li>
+      <li><strong>Website analytics</strong> — Google Analytics 4 / Google LLC (US; transfers covered by Standard Contractual Clauses / IDTA). See Section 11.</li>
+    </ul>
+
+    <h3>Clients and testers — limited sharing</h3>
+    <p>Client details (company name and product description) are shared with testers only to the extent necessary to complete an assigned evaluation, and only after an NDA has been signed. Tester identities are not disclosed to clients; evaluation findings are attributed anonymously (e.g. "Tester T-03").</p>
+  </section>
+
+  <!-- 6 -->
+  <section id="stripe">
+    <h2>6. Payments &amp; Stripe</h2>
+    <p>Payment processing for client engagements is handled by <strong>Stripe, Inc.</strong>, a PCI DSS-compliant payment processor. When you make a payment, you are providing your payment details directly to Stripe — we do not receive, store, or have access to your full card number, CVV, or other sensitive payment credentials.</p>
+    <p>Stripe may collect and process the following on our behalf:</p>
+    <ul>
+      <li>Payment card details (handled entirely by Stripe's secure environment)</li>
+      <li>Billing name and address</li>
+      <li>Transaction amounts and timestamps</li>
+      <li>Device and browser information (for fraud prevention)</li>
+    </ul>
+    <p>Stripe is an independent data controller for its own fraud prevention and compliance purposes. You can read Stripe's privacy policy at <a href="https://stripe.com/privacy" target="_blank" rel="noopener">stripe.com/privacy</a>.</p>
+    <p>We retain records of transaction amounts, dates, and associated client identifiers for our accounting and tax obligations (see Section 8).</p>
+    <div class="info-box">
+      <strong>Stripe's compliance</strong>
+      Stripe is certified to PCI DSS Level 1, the highest level of payment security certification. Transfers of payment data to the US are covered by Standard Contractual Clauses.
+    </div>
+  </section>
+
+  <!-- 7 -->
+  <section id="international">
+    <h2>7. International transfers</h2>
+    <p>System Lens Evaluation is operated from Japan. Japan has received an <strong>adequacy decision</strong> from the UK (under Article 45 UK GDPR), meaning the UK recognises Japan's data protection standards as equivalent. No additional safeguards are required for transfers between the UK and Japan.</p>
+    <p>Several of our service providers are based in the United States. We ensure transfers are protected by Standard Contractual Clauses (SCCs) or, where applicable, UK International Data Transfer Agreements (IDTAs) approved by the ICO.</p>
+    <p>Our tester network includes individuals located globally, including in the EU, UK, Japan, and other countries. We apply UK GDPR protections to all data subjects regardless of location.</p>
+  </section>
+
+  <!-- 8 -->
+  <section id="retention">
+    <h2>8. How long we keep your data</h2>
+    <table class="data-table">
+      <thead>
+        <tr><th>Data type</th><th>Retention period</th><th>Reason</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Client contracts and engagement records</td>
+          <td>6 years from project end</td>
+          <td>UK Limitation Act 1980 / contractual claims period</td>
+        </tr>
+        <tr>
+          <td>Payment and invoice records</td>
+          <td>7 years from transaction date</td>
+          <td>Japanese tax law (5 years) and UK HMRC requirements (6 years), retaining the longer period</td>
+        </tr>
+        <tr>
+          <td>Tester profiles (active)</td>
+          <td>Duration of active tester status + 12 months</td>
+          <td>Operational need</td>
+        </tr>
+        <tr>
+          <td>Tester profiles (inactive / deregistered)</td>
+          <td>12 months after last activity or deregistration</td>
+          <td>Legitimate interest; then deleted or anonymised</td>
+        </tr>
+        <tr>
+          <td>NDA records</td>
+          <td>6 years from signing</td>
+          <td>Contractual / dispute resolution</td>
+        </tr>
+        <tr>
+          <td>Test submissions and evaluation data</td>
+          <td>3 years from project completion</td>
+          <td>Operational need and dispute resolution</td>
+        </tr>
+        <tr>
+          <td>Contact form enquiries (not converted)</td>
+          <td>12 months</td>
+          <td>Legitimate interest in managing our pipeline</td>
+        </tr>
+        <tr>
+          <td>Stripe transaction records</td>
+          <td>As per Stripe's own retention policy</td>
+          <td>Stripe is an independent controller for compliance purposes</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 9 -->
+  <section id="your-rights">
+    <h2>9. Your rights</h2>
+    <p>Under UK GDPR, if you are a UK or European data subject, you have the following rights:</p>
+    <div class="rights-grid">
+      <div class="right-card">
+        <div class="right-name">Right of access</div>
+        <p>Request a copy of the personal data we hold about you.</p>
+      </div>
+      <div class="right-card">
+        <div class="right-name">Right to rectification</div>
+        <p>Ask us to correct inaccurate or incomplete data about you.</p>
+      </div>
+      <div class="right-card">
+        <div class="right-name">Right to erasure</div>
+        <p>Ask us to delete your data where there is no longer a lawful reason to hold it.</p>
+      </div>
+      <div class="right-card">
+        <div class="right-name">Right to restrict processing</div>
+        <p>Ask us to pause processing your data in certain circumstances.</p>
+      </div>
+      <div class="right-card">
+        <div class="right-name">Right to data portability</div>
+        <p>Receive your data in a structured, commonly-used format.</p>
+      </div>
+      <div class="right-card">
+        <div class="right-name">Right to object</div>
+        <p>Object to processing based on legitimate interests.</p>
+      </div>
+      <div class="right-card">
+        <div class="right-name">Right to withdraw consent</div>
+        <p>Withdraw consent at any time where processing is consent-based (e.g. email notifications).</p>
+      </div>
+      <div class="right-card">
+        <div class="right-name">Rights re: automated decisions</div>
+        <p>We do not use automated decision-making or profiling that produces legal effects.</p>
+      </div>
+    </div>
+    <p><strong>Japanese data subjects</strong> also have rights under Japan's Act on the Protection of Personal Information (APPI), including the right to disclosure, correction, and suspension of use of personal information. These rights can be exercised using the same contact details in Section 13.</p>
+    <p>We will respond to all rights requests within <strong>one calendar month</strong>. We will not charge a fee in most cases.</p>
+  </section>
+
+  <!-- 10 -->
+  <section id="security">
+    <h2>10. Security</h2>
+    <ul>
+      <li>End-to-end encrypted email (Proton Mail) for sensitive client and tester communications</li>
+      <li>Encrypted database storage via Supabase with row-level security</li>
+      <li>Multi-factor authentication on all accounts holding personal data</li>
+      <li>Payment data handled entirely by Stripe's PCI DSS Level 1 environment — we never store card details</li>
+      <li>NDA records include IP address and timestamp to support legal enforceability</li>
+      <li>Access to personal data restricted to authorised personnel only</li>
+    </ul>
+    <p>In the event of a personal data breach, we will notify the ICO within 72 hours where required and inform affected individuals without undue delay.</p>
+  </section>
+
+  <!-- 11 -->
+  <section id="cookies">
+    <h2>11. Cookies &amp; Analytics</h2>
+    <p>Our website uses <strong>Google Analytics 4 (GA4)</strong> to collect anonymised data about how visitors use the site. Data collected includes pages visited, time on page, and general geographic region (country level). IP addresses are anonymised before storage.</p>
+    <p><strong>Legal basis:</strong> Legitimate interests (UK GDPR Art. 6(1)(f)) — understanding site performance using minimal, anonymised data.</p>
+    <p><strong>Opt out:</strong> Install the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">Google Analytics Opt-out Browser Add-on</a> or use a privacy extension that blocks analytics trackers.</p>
+    <p>We do not use advertising cookies, retargeting, or any tracking beyond GA4. The platform (systemlensevaluation.com) uses technically necessary cookies only — session tokens required to keep you logged in to your tester or admin account. These are strictly necessary and do not require consent.</p>
+  </section>
+
+  <!-- 12 -->
+  <section id="changes">
+    <h2>12. Changes to this notice</h2>
+    <p>We review this notice at least annually and whenever there are material changes to how we process personal data. The "last reviewed" date at the top will be updated accordingly.</p>
+    <p>Where changes are significant, active clients and testers will be notified by email before the changes take effect.</p>
+  </section>
+
+  <!-- 13 -->
+  <section id="contact">
+    <h2>13. How to contact us</h2>
+    <div class="contact-box">
+      <h3>Data Controller Contact</h3>
+      <p><strong>システムレンズ評価 (System Lens Evaluation)</strong></p>
+      <p>Operated by: Kirsi Erin Page</p>
+      <p>📧 Email: <a href="mailto:privacy@systemlensevaluation.com">privacy@systemlensevaluation.com</a></p>
+      <p style="margin-top:0.75rem;font-size:0.88rem;opacity:0.8;">For UK/European data subjects, you may also contact us in relation to ICO registration ZC149156 via Hidden Insight Labs Ltd, 71–75 Shelton Street, Covent Garden, London, WC2H 9JQ.</p>
+    </div>
+
+    <h3 style="margin-top:2rem;">Complaints — UK &amp; European data subjects</h3>
+    <div class="info-box">
+      <strong>Information Commissioner's Office (ICO)</strong>
+      <p>Website: <a href="https://ico.org.uk/make-a-complaint/" target="_blank" rel="noopener">ico.org.uk/make-a-complaint</a><br>
+      Phone: 0303 123 1113<br>
+      Post: ICO, Wycliffe House, Water Lane, Wilmslow, Cheshire, SK9 5AF</p>
+    </div>
+
+    <h3>Complaints — Japanese data subjects</h3>
+    <div class="info-box">
+      <strong>Personal Information Protection Commission (PPC)</strong>
+      <p>Website: <a href="https://www.ppc.go.jp/en/" target="_blank" rel="noopener">ppc.go.jp/en</a></p>
+    </div>
+
+    <p>We would appreciate the opportunity to address any concerns directly before you contact a supervisory authority.</p>
+  </section>
+
+</div>
+
+<footer>
+  <p>&copy; 2026 システムレンズ評価 (System Lens Evaluation) &nbsp;·&nbsp; Operated in Japan by Kirsi Erin Page</p>
+  <p style="margin-top:0.35rem;font-size:0.82rem;">ICO Reg. No. ZC149156 &nbsp;·&nbsp; Affiliated with Hidden Insight Labs Ltd (UK Co. No. 16941841)</p>
+  <p style="margin-top:0.5rem;"><a href="/">Back to platform</a> &nbsp;·&nbsp; <a href="/privacy.html">Privacy Notice</a></p>
+</footer>
 
 </body>
 </html>
