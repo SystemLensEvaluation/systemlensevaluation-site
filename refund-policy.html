@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Refund Policy — System Lens</title>
+<meta name="description" content="Refund policy for System Lens Pilot Evaluation and other independent app evaluation services." />
+<link rel="canonical" href="https://systemlensevaluation.com/refund-policy.html" />
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-T280BWY17N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-T280BWY17N');
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --bg:        #0c0d0f;
+    --surface:   #131518;
+    --border:    #1e2126;
+    --border-hi: #2e333b;
+    --amber:     #f5a623;
+    --green:     #3ddc84;
+    --muted:     #5a6070;
+    --text:      #cdd3de;
+    --text-hi:   #eef1f7;
+    --mono: 'JetBrains Mono', monospace;
+    --display: 'Syne', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 14px;
+    line-height: 1.75;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    background-size: 180px 180px;
+    pointer-events: none; z-index: 1000;
+    opacity: 0.3;
+  }
+
+  nav {
+    position: sticky; top: 0;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2rem; height: 56px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(12,13,15,0.96);
+    backdrop-filter: blur(12px);
+    z-index: 100;
+  }
+
+  .nav-logo {
+    font-family: var(--display); font-weight: 800; font-size: 1.05rem;
+    color: var(--text-hi); letter-spacing: -0.02em; text-decoration: none;
+  }
+  .nav-logo .bracket { color: var(--amber); }
+
+  .nav-back {
+    font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--muted); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-back:hover { color: var(--amber); }
+
+  .page-wrap { max-width: 720px; margin: 0 auto; padding: 4rem 2rem 6rem; }
+
+  .page-label {
+    font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--amber); margin-bottom: 0.8rem;
+  }
+  .page-label::before { content: '// '; color: var(--muted); }
+
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(1.9rem, 4vw, 2.6rem);
+    font-weight: 800; letter-spacing: -0.02em;
+    color: var(--text-hi); line-height: 1.1;
+    margin-bottom: 0.75rem;
+  }
+
+  .page-meta {
+    font-size: 0.7rem; letter-spacing: 0.04em; color: var(--muted);
+    margin-bottom: 2.5rem; padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .operator-block {
+    background: var(--surface); border: 1px solid var(--border-hi);
+    border-left: 3px solid var(--amber);
+    padding: 1.25rem 1.5rem; margin-bottom: 2.5rem;
+    font-size: 0.78rem; color: var(--text); line-height: 1.85;
+  }
+  .operator-block strong { color: var(--text-hi); display: block; margin-bottom: 0.3rem; }
+
+  section { margin-bottom: 2.5rem; }
+
+  h2 {
+    font-family: var(--display); font-size: 1.05rem; font-weight: 700;
+    color: var(--text-hi); margin-bottom: 0.8rem;
+    padding-bottom: 0.5rem; border-bottom: 1px solid var(--border);
+  }
+
+  p { font-size: 0.82rem; color: var(--text); margin-bottom: 1rem; line-height: 1.85; }
+  p strong { color: var(--text-hi); font-weight: 500; }
+
+  ul { padding-left: 1.4rem; margin-bottom: 1rem; }
+  ul li { font-size: 0.82rem; color: var(--text); margin-bottom: 0.5rem; line-height: 1.75; }
+  ul li strong { color: var(--text-hi); font-weight: 500; }
+
+  .callout {
+    background: var(--surface); border: 1px solid var(--border-hi);
+    border-left: 3px solid var(--green);
+    padding: 1.1rem 1.4rem; margin: 1.25rem 0;
+    font-size: 0.78rem; color: var(--text); line-height: 1.8;
+  }
+  .callout strong { color: var(--text-hi); }
+  .callout.amber { border-left-color: var(--amber); }
+
+  a { color: var(--amber); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem; max-width: 1200px; margin: 0 auto;
+    display: flex; justify-content: space-between;
+    align-items: center; flex-wrap: wrap; gap: 1rem;
+  }
+
+  .footer-logo {
+    font-family: var(--display); font-size: 0.85rem; font-weight: 800;
+    color: var(--muted); text-decoration: none;
+  }
+
+  .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+  .footer-links a {
+    font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--muted); text-decoration: none; transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--amber); }
+
+  .footer-operator {
+    width: 100%; font-size: 0.6rem; color: var(--muted); text-align: center;
+    padding-top: 1rem; border-top: 1px solid var(--border); margin-top: 0.5rem;
+  }
+
+  @media (max-width: 640px) {
+    nav { padding: 0 1.2rem; }
+    .page-wrap { padding: 2.5rem 1.2rem 4rem; }
+    footer { padding: 1.5rem 1.2rem; flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo"><span class="bracket">[</span>System Lens<span class="bracket">]</span></a>
+  <a href="index.html" class="nav-back">← Back to site</a>
+</nav>
+
+<div class="page-wrap">
+
+  <div class="page-label">Legal · Policies</div>
+  <h1>Refund Policy</h1>
+  <div class="page-meta">
+    Last updated: May 2026 &nbsp;·&nbsp; Applies to all purchases made at systemlensevaluation.com
+  </div>
+
+  <div class="operator-block">
+    <strong>System Lens Evaluation (システムレンズ評価)</strong>
+    A Japan-registered sole proprietorship, Kanagawa, Japan<br/>
+    Contact: <a href="mailto:info@systemlensevaluation.com">info@systemlensevaluation.com</a><br/>
+    All services are delivered digitally. No physical goods are provided.
+  </div>
+
+  <section>
+    <h2>Nature of Service</h2>
+    <p>System Lens provides <strong>independent digital app evaluation services</strong>. All deliverables — including findings reports, recommendations, and walkthrough meetings — are delivered digitally. No physical goods are shipped at any time.</p>
+    <p>Because our services involve the allocation of human evaluator time and resources immediately upon engagement commencement, our refund policy reflects the nature of this work.</p>
+  </section>
+
+  <section>
+    <h2>Pilot Evaluation — Refund Terms</h2>
+
+    <div class="callout">
+      <strong>Before testing begins:</strong> Full refund available if requested before access to your app has been confirmed and testing has commenced.
+    </div>
+
+    <div class="callout amber">
+      <strong>After testing begins:</strong> No refund is available once access to your app has been confirmed and testing has commenced. Evaluator time and resources have been committed at this point.
+    </div>
+
+    <p>Specifically:</p>
+
+    <ul>
+      <li><strong>Cancellation before onboarding instructions are sent</strong> — full refund, no questions asked. Contact us within 24 hours of purchase at <a href="mailto:info@systemlensevaluation.com">info@systemlensevaluation.com</a>.</li>
+      <li><strong>Cancellation after onboarding instructions are sent but before app access is confirmed</strong> — full refund available. Please contact us as soon as possible.</li>
+      <li><strong>Cancellation after app access has been confirmed and testing has commenced</strong> — no refund is available. The engagement is considered underway.</li>
+      <li><strong>If we are unable to complete the evaluation</strong> due to a failure on our part (for example, inability to access the app despite valid credentials being provided) — a full refund will be issued.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Report Quality</h2>
+    <p>We are committed to delivering findings reports that are structured, specific, and actionable. If you believe the report delivered does not meet a reasonable standard of quality for the flow tested, please contact us at <a href="mailto:info@systemlensevaluation.com">info@systemlensevaluation.com</a> within 7 days of delivery.</p>
+    <p>We will review your concern and, at our discretion, offer one of the following resolutions: supplementary findings, a revised report section, or a credit toward a future engagement. Refunds on quality grounds are considered case by case and are not automatic.</p>
+  </section>
+
+  <section>
+    <h2>Starter, Standard &amp; Comprehensive Tiers</h2>
+    <p>For engagements beyond the Pilot tier, refund and cancellation terms are governed by the specific service agreement or statement of work entered into between the client and System Lens prior to engagement commencement. If no separate agreement is in place, the following applies:</p>
+    <ul>
+      <li>Cancellations made before work has commenced — full refund of any deposit paid</li>
+      <li>Cancellations made after work has commenced — refund of any portion not yet expended on evaluator time and resources, at our reasonable assessment</li>
+    </ul>
+    <p>Please contact <a href="mailto:info@systemlensevaluation.com">info@systemlensevaluation.com</a> to discuss cancellation of any ongoing engagement.</p>
+  </section>
+
+  <section>
+    <h2>Add-Ons (Session Recordings &amp; Tool-Assisted Testing)</h2>
+    <p>Add-on services (raw session recordings and tool-assisted testing via platforms such as TestFlight or Google Play Console) follow the same refund terms as the primary engagement tier to which they are attached. Once a session recording or tool-assisted test has commenced, no refund is available for that add-on.</p>
+  </section>
+
+  <section>
+    <h2>How to Request a Refund</h2>
+    <p>To request a refund or discuss a cancellation, email <a href="mailto:info@systemlensevaluation.com">info@systemlensevaluation.com</a> with:</p>
+    <ul>
+      <li>Your name and company</li>
+      <li>The email address used at purchase</li>
+      <li>Your Stripe receipt or order reference</li>
+      <li>The reason for your request</li>
+    </ul>
+    <p>We aim to respond to all refund requests within <strong>2 business days</strong>. Approved refunds are processed via the original payment method through Stripe and typically appear within 5–10 business days depending on your bank.</p>
+  </section>
+
+  <section>
+    <h2>Consumer Rights</h2>
+    <p>If you are a consumer based in a jurisdiction with statutory consumer protection rights relating to digital services, those rights are not affected by this policy.</p>
+    <p>By completing a purchase and acknowledging that the digital service will commence within the cancellation window, you expressly consent to the supply of the digital service beginning immediately and acknowledge that any statutory right to cancel may be waived once the service has commenced, to the extent permitted by applicable law.</p>
+    <p>Nothing in this policy limits or excludes any statutory rights you may have as a consumer under the law applicable to you.</p>
+  </section>
+
+  <section>
+    <h2>Contact</h2>
+    <p>For any questions about this policy, please contact us at <a href="mailto:info@systemlensevaluation.com">info@systemlensevaluation.com</a>. We aim to respond within 2 business days.</p>
+  </section>
+
+</div>
+
+<footer>
+  <a href="index.html" class="footer-logo">[System Lens]</a>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="terms.html">Terms of Service</a>
+    <a href="mailto:info@systemlensevaluation.com">Contact</a>
+  </div>
+  <div class="footer-operator">
+    © 2026 System Lens Evaluation (システムレンズ評価) · Operated from Kanagawa, Japan · All services delivered digitally. No physical goods are provided.
+  </div>
+</footer>
+
+</body>
+</html>

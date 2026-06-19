@@ -1156,7 +1156,7 @@
           <div>All services are delivered digitally.</div>
           <div>No physical goods are shipped.</div>
           <div style="margin-top:0.5rem;">
-            <a href="mailto:hello@hiddeninsightlabs.com" style="color:var(--amber);text-decoration:none;">hello@hiddeninsightlabs.com</a>
+            <a href="mailto:info@systemlensevaluation.com" style="color:var(--amber);text-decoration:none;">info@systemlensevaluation.com</a>
           </div>
         </div>
       </div>
@@ -1172,38 +1172,8 @@
 
     <div class="contact-wrap">
       <div class="contact-form">
-        <div class="form-row">
-          <div class="field">
-            <label>Your Name</label>
-            <input type="text" placeholder="Alex Kim" id="c-name" />
-          </div>
-          <div class="field">
-            <label>Work Email</label>
-            <input type="email" placeholder="alex@yourcompany.com" id="c-email" />
-          </div>
-        </div>
-        <div class="field">
-          <label>Company / Product</label>
-          <input type="text" placeholder="Acme SaaS Inc." id="c-company" />
-        </div>
-        <div class="field">
-          <label>What are you most concerned about?</label>
-          <select id="c-concern">
-            <option value="" disabled selected>Select a focus area…</option>
-            <option>Not sure yet — general evaluation</option>
-            <option>Onboarding &amp; activation drop-off</option>
-            <option>Feature discoverability</option>
-            <option>Trial-to-paid conversion</option>
-            <option>Overall UX / usability</option>
-            <option>Performance &amp; perceived speed</option>
-          </select>
-        </div>
-        <div class="field">
-          <label>Anything else we should know?</label>
-          <textarea placeholder="Tell us about your product, your timeline, or specific flows you want us to look at…" id="c-notes"></textarea>
-        </div>
-        <button class="submit-btn" id="submitBtn" onclick="handleContact()">Send Request →</button>
-        <p class="success-msg" id="contactSuccess">✓ Got it. We'll be in touch within one business day.</p>
+        <p style="font-size:0.85rem;color:var(--text);line-height:1.85;margin-bottom:1.5rem;max-width:480px;">Tell us about your product, your timeline, and what you're most concerned about — onboarding drop-off, conversion, usability, or something else entirely. We'll scope an engagement and send a clear quote.</p>
+        <a href="mailto:info@systemlensevaluation.com?subject=Evaluation%20Request" class="btn-primary" style="display:inline-block;font-size:0.85rem;padding:1rem 2rem;">info@systemlensevaluation.com →</a>
       </div>
 
       <div class="contact-info">
@@ -1232,9 +1202,9 @@
   </div>
   <div class="footer-copy" style="margin-top:0.75rem;display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;">
     <a href="/privacy.html" style="color:var(--amber);text-decoration:none;">Privacy Policy</a>
-    <a href="https://hiddeninsightlabs.com/Pilot_Evaluation___Terms_of_Service___Hidden_Insight_Labs.html" style="color:var(--amber);text-decoration:none;">Terms of Service</a>
-    <a href="https://hiddeninsightlabs.com/hil-refund-policy.html" style="color:var(--amber);text-decoration:none;">Refund Policy</a>
-    <a href="mailto:hello@hiddeninsightlabs.com" style="color:var(--amber);text-decoration:none;">Contact</a>
+    <a href="terms.html" style="color:var(--amber);text-decoration:none;">Terms of Service</a>
+    <a href="refund-policy.html" style="color:var(--amber);text-decoration:none;">Refund Policy</a>
+    <a href="mailto:info@systemlensevaluation.com" style="color:var(--amber);text-decoration:none;">Contact</a>
   </div>
   <div class="footer-copy" style="margin-top:0.75rem;font-size:0.72rem;opacity:0.5;">
     © 2026 System Lens Evaluation &nbsp;·&nbsp; ICO Reg. No. ZC149156
@@ -1252,25 +1222,6 @@
   function closeMenu() {
     document.getElementById('hamburger').classList.remove('open');
     document.getElementById('navDrawer').classList.remove('open');
-  }
-
-  function handleContact() {
-    const name  = document.getElementById('c-name');
-    const email = document.getElementById('c-email');
-    const msg   = document.getElementById('contactSuccess');
-    const btn   = document.getElementById('submitBtn');
-    let valid = true;
-
-    [name, email].forEach(el => {
-      const bad = !el.value.trim() || (el.type === 'email' && !el.value.includes('@'));
-      el.style.borderColor = bad ? 'var(--red)' : '';
-      if (bad) { valid = false; setTimeout(() => el.style.borderColor = '', 2000); }
-    });
-
-    if (!valid) return;
-    btn.disabled = true;
-    btn.textContent = 'Sent ✓';
-    msg.classList.add('show');
   }
 </script>
 </body>

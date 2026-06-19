@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Terms of Service · System Lens</title>
+<meta name="description" content="Terms of service for System Lens evaluation engagements. Please read before purchasing." />
+<link rel="canonical" href="https://systemlensevaluation.com/terms.html" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --bg:        #0c0d0f;
+    --surface:   #131518;
+    --border:    #1e2126;
+    --border-hi: #2e333b;
+    --amber:     #f5a623;
+    --green:     #3ddc84;
+    --orange:    #f5a623;
+    --muted:     #5a6070;
+    --text:      #cdd3de;
+    --text-hi:   #eef1f7;
+    --mono: 'JetBrains Mono', monospace;
+    --display: 'Syne', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 14px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  body::after {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    background-size: 180px 180px;
+    pointer-events: none; z-index: 9999;
+    opacity: 0.3;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2rem; height: 56px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(12,13,15,0.96);
+    backdrop-filter: blur(12px);
+  }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 0.5rem; text-decoration: none;
+    font-family: var(--display); font-weight: 800; font-size: 1.05rem;
+    color: var(--text-hi); letter-spacing: -0.02em;
+  }
+  .nav-logo .bracket { color: var(--amber); }
+
+  .nav-back {
+    font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--muted); text-decoration: none; transition: color 0.2s;
+  }
+  .nav-back:hover { color: var(--amber); }
+
+  /* PAGE */
+  .page { max-width: 720px; margin: 0 auto; padding: 7.5rem 2rem 6rem; }
+
+  .doc-label {
+    font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--amber); margin-bottom: 0.8rem;
+  }
+  .doc-label::before { content: '// '; color: var(--muted); }
+
+  .doc-title {
+    font-family: var(--display);
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 800; color: var(--text-hi);
+    line-height: 1.15; letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+
+  .doc-meta {
+    font-size: 0.68rem; letter-spacing: 0.06em; color: var(--muted);
+    margin-bottom: 3rem; padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* SUMMARY BOX */
+  .summary-box {
+    background: var(--surface); border: 1px solid var(--border-hi);
+    border-left: 3px solid var(--amber);
+    padding: 1.5rem 1.75rem; margin-bottom: 3rem;
+  }
+
+  .summary-box-label {
+    font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--amber); margin-bottom: 0.75rem;
+  }
+
+  .summary-box p { font-size: 0.82rem; color: var(--text); line-height: 1.85; }
+
+  /* SECTIONS */
+  .doc-section { margin-bottom: 2.5rem; }
+
+  .doc-section-num {
+    font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--amber); margin-bottom: 0.4rem;
+  }
+
+  .doc-section h2 {
+    font-family: var(--display); font-size: 1.05rem; font-weight: 700;
+    color: var(--text-hi); margin-bottom: 0.8rem; letter-spacing: -0.01em;
+  }
+
+  .doc-section p {
+    font-size: 0.82rem; color: var(--text); line-height: 1.85; margin-bottom: 0.8rem;
+  }
+  .doc-section p:last-child { margin-bottom: 0; }
+
+  .doc-section ul {
+    list-style: none; display: flex; flex-direction: column; gap: 0.55rem; margin-top: 0.5rem;
+  }
+  .doc-section ul li {
+    font-size: 0.82rem; color: var(--text); padding-left: 1.25rem;
+    position: relative; line-height: 1.75;
+  }
+  .doc-section ul li::before { content: '—'; position: absolute; left: 0; color: var(--muted); }
+
+  .doc-divider { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
+
+  .hl-green { color: var(--green); font-weight: 500; }
+  .hl-orange { color: var(--orange); }
+
+  /* CONTACT BLOCK */
+  .contact-block {
+    background: var(--surface); border: 1px solid var(--border-hi);
+    padding: 1.5rem 1.75rem; margin-top: 3rem;
+  }
+
+  .contact-block-label {
+    font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 0.6rem;
+  }
+
+  .contact-block p { font-size: 0.78rem; color: var(--text); line-height: 1.8; }
+
+  a { color: var(--amber); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 1.5rem 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    max-width: 1200px; margin: 0 auto; flex-wrap: wrap; gap: 1rem;
+  }
+
+  .footer-logo {
+    font-family: var(--display); font-size: 0.85rem; font-weight: 800;
+    color: var(--muted); text-decoration: none;
+  }
+
+  .footer-link {
+    font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--muted); text-decoration: none;
+  }
+  .footer-link:hover { color: var(--amber); }
+
+  @media (max-width: 640px) {
+    nav { padding: 0 1.2rem; }
+    .page { padding: 6.5rem 1.2rem 4rem; }
+    footer { padding: 1.5rem 1.2rem; flex-direction: column; gap: 0.75rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo"><span class="bracket">[</span>System Lens<span class="bracket">]</span></a>
+  <a href="index.html" class="nav-back">← Back to site</a>
+</nav>
+
+<div class="page">
+
+  <div class="doc-label">Legal · Service Engagement</div>
+  <h1 class="doc-title">Terms of Service</h1>
+  <div class="doc-meta">
+    Effective date: May 2026 &nbsp;·&nbsp;
+    Applies to: All System Lens engagements (Pilot, Standard, Comprehensive, and custom tiers) &nbsp;·&nbsp;
+    Issued by: System Lens Evaluation
+  </div>
+
+  <div class="summary-box">
+    <div class="summary-box-label">Plain-language summary</div>
+    <p>You're purchasing an independent app evaluation engagement. We test your product using a panel of real-world evaluators and deliver a written findings report. The scope — number of flows covered, panel size, and turnaround time — depends on the engagement tier you purchase, as described in the proposal, order form, or product page for that tier at the time of booking. Testing begins once we have confirmed receipt of payment and obtained the information needed to access your app. Refunds are governed by our separate Refund Policy, linked below.</p>
+  </div>
+
+  <div class="doc-section">
+    <div class="doc-section-num">Section 01</div>
+    <h2>Parties</h2>
+    <p>These terms form a binding agreement between <span class="hl-green">System Lens Evaluation (システムレンズ評価)</span> ("we", "us", "System Lens"), a sole proprietorship registered in Kanagawa, Japan, and the individual or organisation purchasing any System Lens evaluation engagement ("you", "the client").</p>
+  </div>
+
+  <hr class="doc-divider" />
+
+  <div class="doc-section">
+    <div class="doc-section-num">Section 02</div>
+    <h2>Scope of Engagement</h2>
+    <p>System Lens offers evaluation engagements at several tiers — including Pilot, Standard, Comprehensive, and custom-scoped engagements. The specific scope of your engagement, including the number of user flows covered, panel size, deliverables, and turnaround time, is set out in the proposal, order form, product page, or statement of work applicable to the tier you purchase at the time of booking. That description forms part of these terms by reference.</p>
+    <p style="margin-top:0.75rem">Unless otherwise stated in your engagement's scope description, deliverables for any tier do <span class="hl-orange">not</span> include: automated testing, code review, re-testing after fixes, or any deliverable not expressly listed for that tier. Clients on lower tiers who want expanded coverage may upgrade to a higher tier at any time.</p>
+  </div>
+
+  <hr class="doc-divider" />
+
+  <div class="doc-section">
+    <div class="doc-section-num">Section 03</div>
+    <h2>Introductory Offers</h2>
+    <p>Where System Lens offers an introductory or discounted rate on any tier (for example, a Pilot Evaluation), such offers are <span class="hl-green">new client offers</span>, available once per company or individual unless otherwise stated. Repeat engagements, including subsequent engagements for the same product or a different product from the same client or organisation, are billed at the standard rate for the applicable tier.</p>
+    <p>System Lens reserves the right to determine, at its sole discretion, whether a purchaser qualifies as a new client for the purposes of any introductory offer.</p>
+  </div>
+
+  <hr class="doc-divider" />
+
+  <div class="doc-section">
+    <div class="doc-section-num">Section 04</div>
+    <h2>Commencement &amp; Delivery</h2>
+    <p>The delivery window for your engagement begins once both of the following conditions are met:</p>
+    <ul>
+      <li>Payment, or any required deposit, has been received and confirmed</li>
+      <li>System Lens has received all information necessary to access and test the agreed scope (app store link, TestFlight/beta access, login credentials if required, or equivalent)</li>
+    </ul>
+    <p style="margin-top:0.75rem">If access information is not provided within 7 calendar days of payment, System Lens reserves the right to treat the engagement as lapsed, subject to the cancellation terms in our Refund Policy.</p>
+    <p>Delivery timelines vary by tier and are specified at the time of booking; all timelines are approximate. System Lens will communicate promptly if any delay is anticipated.</p>
+  </div>
+
+  <hr class="doc-divider" />
+
+  <div class="doc-section">
+    <div class="doc-section-num">Section 05</div>
+    <h2>Payment &amp; Refund Policy</h2>
+    <p>Payment terms (full payment up front, deposit plus balance, or other arrangement) are specified at the time of booking and vary by engagement tier. Payment is collected via Stripe unless otherwise agreed. All prices are in US dollars unless otherwise stated.</p>
+    <p>Cancellation and refund eligibility are governed by our <a href="refund-policy.html">Refund Policy</a>, which forms part of these terms. In general, refund availability narrows once evaluator time and resources have been committed to your engagement.</p>
+    <p>If System Lens is unable to complete the engagement due to factors within our control, a full refund will be issued.</p>
+  </div>
+
+  <hr class="doc-divider" />
+
+  <div class="doc-section">
+    <div class="doc-section-num">Section 06</div>
+    <h2>Confidentiality</h2>
+    <p>System Lens treats all client information, app access credentials, and findings as strictly confidential. We will not share, publish, or reference your product, findings, or engagement details with any third party without your express written consent.</p>
+    <p>You may use the findings report internally and share it with your team and stakeholders without restriction. You may not resell or redistribute the report as a standalone product.</p>
+  </div>
+
+  <hr class="doc-divider" />
+
+  <div class="doc-section">
+    <div class="doc-section-num">Section 07</div>
+    <h2>Nature of Findings</h2>
+    <p>The findings report reflects the real-world observations of a small evaluator panel during the engagement window. It is not a guarantee that all issues in the specified flow have been identified, nor a certification that your software is free of defects.</p>
+    <p>System Lens's role is to surface friction and issues that are present during testing. We do not warrant any particular outcome and accept no liability for issues that arise after the engagement is complete.</p>
+  </div>
+
+  <hr class="doc-divider" />
+
+  <div class="doc-section">
+    <div class="doc-section-num">Section 08</div>
+    <h2>Intellectual Property</h2>
+    <p>All intellectual property in your app remains yours. System Lens claims no rights over your software, content, or data.</p>
+    <p>The findings report is produced by System Lens and delivered to you for your use. Ownership of the report transfers to you upon delivery.</p>
+  </div>
+
+  <hr class="doc-divider" />
+
+  <div class="doc-section">
+    <div class="doc-section-num">Section 09</div>
+    <h2>Limitation of Liability</h2>
+    <p>To the fullest extent permitted by law, System Lens's total liability arising from any engagement shall not exceed the total amount paid by you for that engagement. System Lens is not liable for indirect, consequential, or incidental damages of any kind.</p>
+  </div>
+
+  <hr class="doc-divider" />
+
+  <div class="doc-section">
+    <div class="doc-section-num">Section 10</div>
+    <h2>Governing Law</h2>
+    <p>These terms are governed by the laws of Japan. Any disputes shall be subject to the exclusive jurisdiction of the courts having competent jurisdiction over Kanagawa, Japan.</p>
+  </div>
+
+  <hr class="doc-divider" />
+
+  <div class="doc-section">
+    <div class="doc-section-num">Section 11</div>
+    <h2>Changes to These Terms</h2>
+    <p>System Lens may update these terms from time to time. The terms in effect at the time of your purchase govern your engagement. The effective date at the top of this page reflects the most recent revision.</p>
+  </div>
+
+  <div class="contact-block">
+    <div class="contact-block-label">Questions?</div>
+    <p>If you have any questions about these terms before purchasing, please reach out at <a href="mailto:info@systemlensevaluation.com">info@systemlensevaluation.com</a>. We're happy to clarify anything before you commit.</p>
+  </div>
+
+</div>
+
+<footer>
+  <a href="index.html" class="footer-logo">[System Lens]</a>
+  <a href="index.html" class="footer-link">systemlensevaluation.com</a>
+</footer>
+
+</body>
+</html>
